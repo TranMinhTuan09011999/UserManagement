@@ -1,0 +1,32 @@
+<div class="col-md-12">
+    <div class="card card-container">
+        <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+        <form name="form" (ngSubmit)="this.dataForm.valid && onSubmit()" [formGroup]="this.dataForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="userName" formControlName="userName" id="userName" />
+                <div class="col alert alert-danger" role="alert" *ngIf="this.dataForm.get('userName')?.errors?.required && this.dataForm.get('userName')?.touched">
+                    *Username is required!!!
+                </div>
+                <div class="col alert alert-danger" role="alert" *ngIf="this.dataForm.get('userName')?.errors?.userExists">
+                    *That username don't exist!!!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" formControlName="password" id="password" />
+                <div class="col alert alert-danger" role="alert" *ngIf="this.dataForm.get('password')?.errors?.required && this.dataForm.get('password')?.touched">
+                    *Password is required!!!
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" [disabled]="this.dataForm.invalid">
+                Login
+                </button>
+                <div class="col alert alert-danger" role="alert" *ngIf="IsLogin">
+                    *Username or password is wrong!!!
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

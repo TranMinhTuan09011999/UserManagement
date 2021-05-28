@@ -1,0 +1,42 @@
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search user" [(ngModel)]="searchedKeyword" (input)="getFirst()" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <br>
+    <h2>LIST USER</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Usename</th>
+                <th>Firsname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users | filter: searchedKeyword | paginate: config">
+                <td>{{user.userName}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.password}}</td>
+                <td style="text-align: center;">
+                    <button class="btn btn-outline-secondary" style="background-color: rgb(241, 80, 80);font-weight: bold;color: black;" type="button" (click)="deleteUser(user.userName)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div>
