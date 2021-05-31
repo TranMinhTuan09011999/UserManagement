@@ -22,6 +22,11 @@ export class ListUserComponent implements OnInit {
   searchedKeyword!: string;
 
   config: any;
+
+  findUser = '';
+
+  options: string[] = ["username", "firstname", "lastname","email"];
+  selectedOption = "username";
   /*---------------------*/
 
 
@@ -92,8 +97,6 @@ export class ListUserComponent implements OnInit {
     }
   }
 
-  
-
   deleteUser(username: String): void {
     this.token = this.tokenStorage.getToken();
     console.log(this.token);
@@ -105,6 +108,25 @@ export class ListUserComponent implements OnInit {
         (error: any) => {
           console.log(error);
         });
+  }
+
+  searchUser(): void {
+    console.log(this.selectedOption);
+    this.token = this.tokenStorage.getToken();
+    this.userService.getAllUserBy(this.token,this.selectedOption,this.findUser)
+      .subscribe(
+        (user: User[]) => {
+          this.users = user;             
+        },
+        (error) => {
+          console.log(error);
+        });
+      
+        this.config = {
+          itemsPerPage: 5,
+          currentPage: 1,
+          totalItems: this.users.values.length
+      };
   }
 
   reloadPage(): void {

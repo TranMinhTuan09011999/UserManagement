@@ -25,4 +25,23 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(username);
     }
 
+    @Override
+    public List<User> getUserByUsername(String username) {
+        return userRepository.findByUserNameContaining(username);
+    }
+
+    @Override
+    public List<User> getUserByFirstname(String firstname) {
+        return userRepository.findByFirstnameContaining(firstname);
+    }
+
+    @Override
+    public List<User> getUserByLastname(String lastname) {
+        return userRepository.findByLastnameContaining(lastname);
+    }
+
+    @Override
+    public List<User> getUserByEmail(String email) {
+        return userRepository.findByEmailContaining(email);
+    }
 }

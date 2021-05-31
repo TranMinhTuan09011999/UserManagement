@@ -2,9 +2,19 @@
     <br>
     <br>
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-2">
+            <select name="selectedOption" id="search" class="form-control" [(ngModel)]="selectedOption">
+                <option *ngFor="let option of options" [value]="option" >{{option}}</option>
+            </select>
+        </div>
+        <div class="col-md-6">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search user" [(ngModel)]="searchedKeyword" (input)="getFirst()" />
+                <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="findUser" />
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" (click)="searchUser()">
+                  Search
+                </button>
+                </div>
             </div>
         </div>
     </div>

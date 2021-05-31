@@ -10,4 +10,8 @@ import java.util.List;
 public interface UserService {
     public List<User> getAll();
     public void deleteUser(String username);
+    public List<User> getUserByUsername(String username);
+    public List<User> getUserByFirstname(String firstname);
+    public List<User> getUserByLastname(String lastname);
+    public List<User> getUserByEmail(String email);
 }

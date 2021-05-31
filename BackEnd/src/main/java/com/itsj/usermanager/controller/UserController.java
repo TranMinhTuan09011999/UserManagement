@@ -122,6 +122,30 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(bool);
     }
 
+    @GetMapping("/users/username/{username}")
+    public ResponseEntity<?> getALLUserByUsername(@PathVariable String username) {
+        List<User> users = userService.getUserByUsername(username);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/firstname/{firstname}")
+    public ResponseEntity<?> getALLUserByFirstname(@PathVariable String firstname) {
+        List<User> users = userService.getUserByFirstname(firstname);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/lastname/{lastname}")
+    public ResponseEntity<?> getALLUserByLastname(@PathVariable String lastname) {
+        List<User> users = userService.getUserByLastname(lastname);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/email/{email}")
+    public ResponseEntity<?> getALLUserByEmail(@PathVariable String email) {
+        List<User> users = userService.getUserByUsername(email);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
     public String sha256(String password){
         return Hashing.sha256().hashString("your input", StandardCharsets.UTF_8)
                 .toString();

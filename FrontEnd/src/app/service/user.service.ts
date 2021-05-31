@@ -39,6 +39,18 @@ export class UserService {
     
   }
 
+  getAllUserBy(token: String, field: String ,username: String): Observable<User[]> {
+    let tokenStr = 'Bearer ' + token;
+    const headers = new HttpHeaders().set('Authorization', tokenStr);
+    // Initialize Params Object
+    return this.http.get<User[]>(`${this.baseUrl}${field}/${username}`, { headers: headers})
+                  .pipe(
+                  retry(3),
+                    catchError(this.handleError)
+                  );
+    
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
