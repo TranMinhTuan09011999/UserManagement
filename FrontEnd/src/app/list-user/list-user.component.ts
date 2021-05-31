@@ -19,8 +19,6 @@ export class ListUserComponent implements OnInit {
   pageIndexes: Array<number> = [];
   namePage: String = 'listUser';
 
-  searchedKeyword!: string;
-
   config: any;
 
   findUser = '';
@@ -116,7 +114,8 @@ export class ListUserComponent implements OnInit {
     this.userService.getAllUserBy(this.token,this.selectedOption,this.findUser)
       .subscribe(
         (user: User[]) => {
-          this.users = user;             
+          this.users = user;  
+          console.log(this.users);           
         },
         (error) => {
           console.log(error);

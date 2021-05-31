@@ -142,7 +142,7 @@ public class UserController {
 
     @GetMapping("/users/email/{email}")
     public ResponseEntity<?> getALLUserByEmail(@PathVariable String email) {
-        List<User> users = userService.getUserByUsername(email);
+        List<User> users = userService.getUserByEmail(email);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
